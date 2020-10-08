@@ -58,17 +58,17 @@ RSpec/NestedGroups:
 RSpec/ExampleLength:
   Max: 8
 
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: true
-
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
-
-Lint/MixedRegexpCaptureTypes:
-  Enabled: true
+#Layout/EmptyLinesAroundAttributeAccessor:
+#  Enabled: true
+#
+#Layout/SpaceAroundMethodCallOperator:
+#  Enabled: true
+#
+#Lint/DeprecatedOpenSSLConstant:
+#  Enabled: true
+#
+#Lint/MixedRegexpCaptureTypes:
+#  Enabled: true
 
 Lint/RaiseException:
   Enabled: true
@@ -76,8 +76,8 @@ Lint/RaiseException:
 Lint/StructNewOverride:
   Enabled: true
 
-Style/ExponentialNotation:
-  Enabled: true
+#Style/ExponentialNotation:
+#  Enabled: true
 
 Style/HashEachMethods:
   Enabled: true
@@ -88,11 +88,11 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 
-Style/RedundantRegexpCharacterClass:
-  Enabled: true
-
-Style/RedundantRegexpEscape:
-  Enabled: true
-
-Style/SlicingWithRange:
-  Enabled: true
+#Style/RedundantRegexpCharacterClass:
+#  Enabled: true
+#
+#Style/RedundantRegexpEscape:
+#  Enabled: true
+#
+#Style/SlicingWithRange:
+#  Enabled: true
