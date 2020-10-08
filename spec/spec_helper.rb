@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+require 'fakeredis/rspec'
 require 'graph_attack'
 
 Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each {|f| require f }
