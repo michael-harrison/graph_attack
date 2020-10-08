@@ -3,11 +3,6 @@
 RSpec.describe GraphAttack::RateLimiter do
   let(:context) { { ip: '99.99.99.99' } }
 
-  # Cleanup after ratelimit gem
-  before do
-    redis.scan_each(match: 'ratelimit:*') { |key| redis.del(key) }
-  end
-
   context 'when using the GraphQL::Ruby DSL' do
     context 'with custom redis client' do
       let(:schema) { CustomSchema }

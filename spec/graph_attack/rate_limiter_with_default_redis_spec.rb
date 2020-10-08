@@ -5,11 +5,6 @@ RSpec.describe GraphAttack::RateLimiter do
   let(:redis) { Redis.current }
   let(:context) { { ip: '99.99.99.99' } }
 
-  # Cleanup after ratelimit gem
-  before do
-    redis.scan_each(match: 'ratelimit:*') { |key| redis.del(key) }
-  end
-
   context 'when using the GraphQL::Ruby DSL' do
     describe 'fields without rate limiting' do
       it 'returns data' do
