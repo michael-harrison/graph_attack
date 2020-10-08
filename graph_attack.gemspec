@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ['>= 1.9', '< 2.8']
 
   # This gem is an analyser for the GraphQL ruby gem.
-  spec.add_dependency 'graphql', '>= 1.7.9'
+  spec.add_dependency 'graphql', '~> 1.10'
 
   # A Redis-backed rate limiter.
   spec.add_dependency 'ratelimit', '>= 1.0.3'
