@@ -40,9 +40,9 @@ Gem::Specification.new do |spec|
   # CircleCI dependency to store spec results.
   spec.add_development_dependency 'rspec_junit_formatter', '~> 0.3'
 
-  # Ruby code linter.
-  spec.add_development_dependency 'rubocop'
-
-  # RSpec extension for RuboCop.
-  spec.add_development_dependency 'rubocop-rspec'
+  # # Ruby code linter.
+  # spec.add_development_dependency 'rubocop'
+  #
+  # # RSpec extension for RuboCop.
+  # spec.add_development_dependency 'rubocop-rspec'
 end
