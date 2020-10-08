@@ -84,13 +84,13 @@ module GraphAttack
     end
 
     def rate_limited_node?(visit_type, node)
-      query_field_node?(node) &&
+      valid_field_node?(node) &&
         visit_type == :enter &&
         node.definition.metadata[:rate_limit]
     end
 
-    def query_field_node?(node)
-      node.owner_type.name == 'Query' &&
+    def valid_field_node?(node)
+      %w(Query Mutation).include?(node.owner_type.name) &&
         node.ast_node.is_a?(GraphQL::Language::Nodes::Field)
     end
   end
