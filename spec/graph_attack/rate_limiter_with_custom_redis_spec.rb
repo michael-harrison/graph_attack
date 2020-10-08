@@ -1,0 +1,28 @@
+# frozen_string_literal: true
+
+RSpec.describe GraphAttack::RateLimiter do
+  let(:schema) { Dummy::Schema }
+  let(:redis) { Redis.current }
+  let(:context) { { ip: '99.99.99.99' } }
+
+  # Cleanup after ratelimit gem
+  before do
+    redis.scan_each(match: 'ratelimit:*') { |key| redis.del(key) }
+  end
+
+  context 'when using the GraphQL::Ruby DSL' do
+    context 'with custom redis client' do
+      let(:schema) { Dummy::SchemaWithCustomRedisClient }
+      let(:redis) { Dummy::CUSTOM_REDIS_CLIENT }
+
+      describe 'fields with rate limiting' do
+        it 'inserts rate limits in the custom redis client' do
+          schema.execute('{ expensiveField }', context: context)
+
+          key = 'ratelimit:99.99.99.99:graphql-query-expensiveField'
+          expect(redis.scan_each(match: key).count).to eq(1)
+        end
+      end
+    end
+  end
+end

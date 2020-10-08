@@ -1,44 +1,5 @@
 # frozen_string_literal: true
 
-module Dummy
-  QueryType = GraphQL::ObjectType.define do
-    name 'Query'
-
-    field :inexpensiveField do
-      type types.String
-      resolve ->(_obj, _args, _ctx) { 'result' }
-    end
-
-    field :expensiveField do
-      rate_limit threshold: 5, interval: 15
-
-      type types.String
-      resolve ->(_obj, _args, _ctx) { 'result' }
-    end
-
-    field :expensiveField2 do
-      rate_limit threshold: 10, interval: 15
-
-      type types.String
-      resolve ->(_obj, _args, _ctx) { 'result' }
-    end
-  end
-
-  Schema = GraphQL::Schema.define do
-    query QueryType
-    query_analyzer GraphAttack::RateLimiter.new
-  end
-
-  CUSTOM_REDIS_CLIENT = Redis.new
-
-  SchemaWithCustomRedisClient = GraphQL::Schema.define do
-    query QueryType
-    query_analyzer GraphAttack::RateLimiter.new(
-      redis_client: CUSTOM_REDIS_CLIENT,
-    )
-  end
-end
-
 RSpec.describe GraphAttack::RateLimiter do
   let(:schema) { Dummy::Schema }
   let(:redis) { Redis.current }
@@ -153,20 +114,6 @@ RSpec.describe GraphAttack::RateLimiter do
             'Query rate limit exceeded on expensiveField, expensiveField2'
           expect(result['errors']).to eq([{ 'message' => expected_message }])
           expect(result).not_to have_key('data')
-        end
-      end
-    end
-
-    context 'with custom redis client' do
-      let(:schema) { Dummy::SchemaWithCustomRedisClient }
-      let(:redis) { Dummy::CUSTOM_REDIS_CLIENT }
-
-      describe 'fields with rate limiting' do
-        it 'inserts rate limits in the custom redis client' do
-          schema.execute('{ expensiveField }', context: context)
-
-          key = 'ratelimit:99.99.99.99:graphql-query-expensiveField'
-          expect(redis.scan_each(match: key).count).to eq(1)
         end
       end
     end
