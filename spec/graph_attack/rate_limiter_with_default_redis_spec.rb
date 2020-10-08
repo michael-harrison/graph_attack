@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe GraphAttack::RateLimiter do
-  let(:schema) { Dummy::Schema }
+  let(:schema) { DefaultSchema }
   let(:redis) { Redis.current }
   let(:context) { { ip: '99.99.99.99' } }
 

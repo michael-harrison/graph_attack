@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe GraphAttack::RateLimiter do
-  let(:schema) { Dummy::Schema }
-  let(:redis) { Redis.current }
   let(:context) { { ip: '99.99.99.99' } }
 
   # Cleanup after ratelimit gem
@@ -12,8 +10,8 @@ RSpec.describe GraphAttack::RateLimiter do
 
   context 'when using the GraphQL::Ruby DSL' do
     context 'with custom redis client' do
-      let(:schema) { Dummy::SchemaWithCustomRedisClient }
-      let(:redis) { Dummy::CUSTOM_REDIS_CLIENT }
+      let(:schema) { CustomSchema }
+      let(:redis) { CUSTOM_REDIS_CLIENT }
 
       describe 'fields with rate limiting' do
         it 'inserts rate limits in the custom redis client' do
