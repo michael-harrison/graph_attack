@@ -12,3 +12,6 @@
 
 # Ignore dev bundler resolution
 Gemfile.lock
+
+.ruby-version
+.ruby-gemset
