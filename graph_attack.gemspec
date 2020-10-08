@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 13.0'
 
   # Gem for faking redis negating the need for a real redis server
-  spec.add_development_dependency "fakeredis"
+  spec.add_development_dependency 'fakeredis'
 
   # Testing framework.
   spec.add_development_dependency 'rspec', '~> 3.0'

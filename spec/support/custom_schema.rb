@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'types/query_type'
 
 CUSTOM_REDIS_CLIENT = Redis.new
