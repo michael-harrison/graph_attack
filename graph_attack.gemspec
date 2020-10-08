@@ -28,9 +28,6 @@ Gem::Specification.new do |spec|
   # A Redis-backed rate limiter.
   spec.add_dependency 'ratelimit', '>= 1.0.3'
 
-  # Loads local dependencies.
-  spec.add_development_dependency 'bundler', '~> 2.0'
-
   # Development tasks runner.
   spec.add_development_dependency 'rake', '~> 13.0'
 
